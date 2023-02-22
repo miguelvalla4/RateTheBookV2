@@ -1,18 +1,43 @@
 version: '3.7'
 
 volumes:
-    logs:
-        driver: local
+  logs:
+    driver: local
 
 services:
-    slim:
-        image: php:8-alpine
-        working_dir: /var/www
-        command: php -S 0.0.0.0:8080 -t public
-        environment:
-            docker: "true"
-        ports:
-            - "8080:8080"
-        volumes:
-            - .:/var/www
-            - logs:/var/www/logs
+  slim:
+    image: php:8-alpine
+    container_name: php-server-container
+    working_dir: /var/www
+    command: php -S 0.0.0.0:8080 -t public
+    environment:
+      docker: "true"
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/var/www
+      - ./app/logs:/var/www/logs
+    networks:
+      - bridge
+
+  db:
+    image: mysql:8.0
+    container_name: db-container
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./opt/db:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: rate_the_books
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=root --execute \"SHOW DATABASES;\""
+      interval: 3s
+      timeout: 1s
+      retries: 5
+    networks:
+      - bridge
+
+networks:
+  bridge:
