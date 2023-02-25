@@ -4,9 +4,32 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Pdo\MySql\Book;
 
-use App\Domain\Book\BookRepository;
+use App\Domain\Books\BookRepositoryInterface;
+use App\Infrastructure\Factory\BookFactory;
+use PDO;
 
-class MySqlBookRepository extends BookRepository
+class MySqlBookRepository implements BookRepositoryInterface
 {
-    private PDO $pdo;
+    public function __construct(private PDO $pdo)
+    {
+    }
+
+    public function getAllBooks(): array
+    {
+        $sql =<<<SQL
+SELECT
+        b.id = `id`,
+        b.title = `title`
+FROM
+        books b
+SQL;
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return array_map(function ($result){
+            return BookFactory::buildFromArray($result);
+        }, $result);
+    }
 }
