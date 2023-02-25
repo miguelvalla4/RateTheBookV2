@@ -1,3 +1,11 @@
+help: ## Listar comandos disponibles en este Makefile
+	@echo "╔══════════════════════════════════════════════════════════════════════════════╗"
+	@echo "║                           ${CYAN}.:${RESET} AVAILABLE COMMANDS ${CYAN}:.${RESET}                           ║"
+	@echo "╚══════════════════════════════════════════════════════════════════════════════╝"
+	@echo ""
+	@grep -E '^[a-zA-Z_0-9%-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "${COMMAND_COLOR}%-40s${RESET} ${HELP_COLOR}%s${RESET}\n", $$1, $$2}'
+	@echo ""
+	
 build: build-container composer-install ## Construye las dependencias del proyecto
 
 build-container: ## Construye el contenedor de la aplicación
