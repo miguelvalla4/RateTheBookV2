@@ -1,7 +1,7 @@
 # RateTheBook
 Is an API to manage and control all books I read
 
-## Requisitos
+## Requirements
 
 - [Docker](https://www.docker.com)
 
