@@ -5,8 +5,13 @@ USE `rate_the_books`;
 
 DROP TABLE IF EXISTS `books`;
 CREATE TABLE `books` (
-  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY
+  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `title` varchar(100) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `books` (`id`, `title`) VALUES
+(1, 'El Ángel Perdido'),
+(2, 'El Aliento de los Dioses');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
