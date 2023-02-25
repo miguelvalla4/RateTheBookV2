@@ -1,7 +1,11 @@
 # RateTheBook
 Is an API to manage and control all books I read
 
-# How to install the aplication
+## Requisitos
+
+- [Docker](https://www.docker.com)
+
+## How to install the aplication
 
 ```bash
 make up
