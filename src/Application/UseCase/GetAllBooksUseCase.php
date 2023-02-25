@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\UseCase;
 
-use App\Domain\Books\BookRepositoryInterface;
+use App\Domain\Book\BookRepositoryInterface;
 
 class GetAllBooksUseCase
 {

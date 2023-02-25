@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Pdo\MySql\Book;
 
-use App\Domain\Books\BookRepositoryInterface;
+use App\Domain\Book\BookRepositoryInterface;
 use App\Infrastructure\Factory\BookFactory;
 use PDO;
 
