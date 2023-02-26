@@ -30,7 +30,6 @@ services:
     ports:
       - 3306:3306
     environment:
-      - MYSQL_HOST=host
       - MYSQL_DATABASE=rate_the_books
       - MYSQL_ROOT_PASSWORD=root
     volumes:

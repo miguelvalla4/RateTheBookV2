@@ -25,7 +25,7 @@ return function (ContainerBuilder $containerBuilder) {
                     'dbname' => 'rate_the_books',
                     'user' => 'root',
                     'password' => 'root',
-                    'host' => 'host',
+                    'host' => 'localhost',
                     'port' => '3306',
                 ],
             ]);

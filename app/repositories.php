@@ -7,10 +7,10 @@ use App\Infrastructure\Pdo\MySql\Book\MySqlBookRepository;
 use DI\ContainerBuilder;
 use Psr\Container\ContainerInterface;
 
-return function (ContainerBuilder $containerBuilder) {
+return static function (ContainerBuilder $containerBuilder) {
     // Here we map our UserRepository interface to its in memory implementation
     $containerBuilder->addDefinitions([
-        BookRepositoryInterface::class => function(ContainerInterface $c) {
+        BookRepositoryInterface::class => function (ContainerInterface $c) {
             return new MySqlBookRepository($c->get(PDO::class));
         }
     ]);
