@@ -26,16 +26,18 @@ return function (ContainerBuilder $containerBuilder) {
 
             return $logger;
         },
-        
+
         PDO::class => function (ContainerInterface $c) {
             $settings = $c->get(SettingsInterface::class);
 
             $databaseSettings = $settings->get('database');
             try {
                 return new PDO(
-                    'mysql:host=' . $databaseSettings['host'] . ';port=' . $databaseSettings['port'] . ';dbname=' . $databaseSettings['dbname'] . ';charset=utf8mb4',
+                    'mysql:host=' . $databaseSettings['host'] . ';port=' . $databaseSettings['port'] .
+                    ';dbname=' . $databaseSettings['dbname'] . ';charset=utf8mb4',
                     $databaseSettings['user'],
-                    $databaseSettings['password']);
+                    $databaseSettings['password']
+                );
             } catch (PDOException $e) {
                 return $e->getMessage();
             }

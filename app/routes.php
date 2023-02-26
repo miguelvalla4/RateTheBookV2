@@ -17,6 +17,6 @@ return function (App $app) {
         $response->getBody()->write('Hello world!');
         return $response;
     });
-    
+
     $app->get('/books', BooksAction::class);
 };
