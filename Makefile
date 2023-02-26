@@ -11,6 +11,9 @@ build: build-container composer-install ## Construye las dependencias del proyec
 composer-install: ## composer install
 	composer install
 
+build-container: ## Construye los contenedores del proyecto
+	docker-compose build
+
 composer-dump: ## composer dump-autoload
 	composer dump-autoload
 	
