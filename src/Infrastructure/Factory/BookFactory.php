@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Factory;
 
-use App\Domain\Books\Book;
+use App\Domain\Book\Book;
 use Exception;
 
 class BookFactory

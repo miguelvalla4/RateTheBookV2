@@ -20,9 +20,9 @@ class BooksAction extends Action
 
     protected function action(): ResponseInterface
     {
-        return $this->respondWithData(array(
+        return $this->respondWithData([
             'message' => $this->getAllBooksUseCase->execute(),
             'ruta' => __FILE__,
-        ));
+        ]);
     }
 }

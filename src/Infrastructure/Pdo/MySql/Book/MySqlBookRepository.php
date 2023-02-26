@@ -6,17 +6,21 @@ namespace App\Infrastructure\Pdo\MySql\Book;
 
 use App\Domain\Book\BookRepositoryInterface;
 use App\Infrastructure\Factory\BookFactory;
+use Exception;
 use PDO;
 
 class MySqlBookRepository implements BookRepositoryInterface
 {
-    public function __construct(private PDO $pdo)
+    private PDO $pdo;
+
+    public function __construct(PDO $pdo)
     {
+        $this->pdo = $pdo;
     }
 
     public function getAllBooks(): array
     {
-        $sql =<<<SQL
+        $sql = <<<SQL
 SELECT
         b.id = `id`,
         b.title = `title`
@@ -28,7 +32,8 @@ SQL;
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-        return array_map(function ($result){
+        /** @throws Exception */
+        return array_map(function ($result) {
             return BookFactory::buildFromArray($result);
         }, $result);
     }

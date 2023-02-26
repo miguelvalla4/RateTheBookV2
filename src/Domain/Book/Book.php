@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Books;
+namespace App\Domain\Book;
 
 use JsonSerializable;
 
