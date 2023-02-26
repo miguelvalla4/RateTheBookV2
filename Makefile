@@ -1,9 +1,3 @@
-IMAGE_NAME=ratethebookv2_php
-IMAGE_TAG_BASE=base
-IMAGE_TAG_DEV=development
-DOCKER_PHP=docker exec -it php_container
-DOCKER_PHP_USER=docker exec -it -u $(UID):$(GID) php_container
-
 help: ## Listar comandos disponibles en este Makefile
 	@echo "╔══════════════════════════════════════════════════════════════════════════════╗"
 	@echo "║                           ${CYAN}.:${RESET} AVAILABLE COMMANDS ${CYAN}:.${RESET}                           ║"
@@ -15,31 +9,21 @@ help: ## Listar comandos disponibles en este Makefile
 build: build-container composer-install ## Construye las dependencias del proyecto
 
 composer-install: ## composer install
-	$(DOCKER_PHP) composer install -vvv docker-compose
+	composer install
 
 composer-dump: ## composer dump-autoload
-	$(DOCKER_PHP) composer dump-autoload
+	composer dump-autoload
 	
 composer-update: ## composer update 
-	$(DOCKER_PHP) composer update
+	composer update
 
 # TESTING COMMANDS ----------------------------------------------------------------------------------------------------
 test: ## PHPUnit test
 	docker-compose exec slim php ./vendor/bin/phpunit --no-coverage --color=always
 
-test-coverage: ## PHPUnit test and coverage
-	rm -rf test/report || echo "No existe la carpeta de reportes previamente"
-	docker-compose exec -e XDEBUG_MODE=coverage slim php ./vendor/bin/phpunit --color=always
-
-test-mutant: ## Infection Mutant Testing
-	docker run --rm -v ${PWD}/app:/app -w /app $(IMAGE_NAME):$(IMAGE_TAG_DEV) php ./vendor/bin/infection
-
-test-group-%:
-	docker-compose exec slim php ./vendor/bin/phpunit --no-coverage --color=always --group ${*}
-
 # ANALYZERS COMMANDS ----------------------------------------------------------------------------------------------------
 phpstan: ## phpstan
-	$(DOCKER_PHP) ./vendor/bin/phpstan analyse --xdebug --level 6 ./src ./tests
+	docker exec -it php_container ./vendor/bin/phpstan analyse --xdebug --level 6 ./src ./tests
 
 # OTHER COMMANDS & UTILS -----------------------------------------------------------------------------------------------
 up: ## Levanta los servicios
