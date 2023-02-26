@@ -1,3 +1,9 @@
+IMAGE_NAME=ratethebookv2_php
+IMAGE_TAG_BASE=base
+IMAGE_TAG_DEV=development
+DOCKER_PHP=docker exec -it php_container
+DOCKER_PHP_USER=docker exec -it -u $(UID):$(GID) php_container
+
 help: ## Listar comandos disponibles en este Makefile
 	@echo "╔══════════════════════════════════════════════════════════════════════════════╗"
 	@echo "║                           ${CYAN}.:${RESET} AVAILABLE COMMANDS ${CYAN}:.${RESET}                           ║"
@@ -8,20 +14,14 @@ help: ## Listar comandos disponibles en este Makefile
 	
 build: build-container composer-install ## Construye las dependencias del proyecto
 
-build-container: ## Construye el contenedor de la aplicación
-	docker build --no-cache --target development -t $(IMAGE_NAME):$(IMAGE_TAG_DEV) ./docker
+composer-install: ## composer install
+	$(DOCKER_PHP) composer install -vvv docker-compose
 
-composer-install: ## Instala las dependencias via composer
-	docker run --rm -v ${PWD}/app:/app -w /app $(IMAGE_NAME):$(IMAGE_TAG_DEV) composer install --verbose
-
-composer-update: ## Actualiza las dependencias via composer
-	docker run --rm -v ${PWD}/app:/app -w /app $(IMAGE_NAME):$(IMAGE_TAG_DEV) composer update --verbose
-
-composer-require: ## Añade nuevas dependencias de producción
-	docker run --rm -ti -v ${PWD}/app:/app -w /app $(IMAGE_NAME):$(IMAGE_TAG_DEV) composer require --verbose
-
-composer-require-dev: ## Añade nuevas dependencias de desarrollo
-	docker run --rm -ti -v ${PWD}/app:/app -w /app $(IMAGE_NAME):$(IMAGE_TAG_DEV) composer require --dev --verbose
+composer-dump: ## composer dump-autoload
+	$(DOCKER_PHP) composer dump-autoload
+	
+composer-update: ## composer update 
+	$(DOCKER_PHP) composer update
 
 # TESTING COMMANDS ----------------------------------------------------------------------------------------------------
 test: ## PHPUnit test
@@ -36,6 +36,10 @@ test-mutant: ## Infection Mutant Testing
 
 test-group-%:
 	docker-compose exec slim php ./vendor/bin/phpunit --no-coverage --color=always --group ${*}
+
+# ANALYZERS COMMANDS ----------------------------------------------------------------------------------------------------
+phpstan: ## phpstan
+	$(DOCKER_PHP) ./vendor/bin/phpstan analyse --xdebug --level 6 ./src ./tests
 
 # OTHER COMMANDS & UTILS -----------------------------------------------------------------------------------------------
 up: ## Levanta los servicios
