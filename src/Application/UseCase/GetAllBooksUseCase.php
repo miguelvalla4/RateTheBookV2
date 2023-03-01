@@ -8,11 +8,8 @@ use App\Domain\Book\BookRepositoryInterface;
 
 class GetAllBooksUseCase
 {
-    private BookRepositoryInterface $bookRepository;
-
-    public function __construct(BookRepositoryInterface $bookRepository)
+    public function __construct(private BookRepositoryInterface $bookRepository)
     {
-        $this->bookRepository = $bookRepository;
     }
 
     public function execute(): array
