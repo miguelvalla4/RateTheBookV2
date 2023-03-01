@@ -13,8 +13,8 @@ class BookFactory
     public static function buildFromArray(array $primitiveBook): Book
     {
         return new Book(
-            $primitiveBook['id'],
-            $primitiveBook['title']
+            (int) $primitiveBook['id'],
+            (string) $primitiveBook['title']
         );
     }
 }

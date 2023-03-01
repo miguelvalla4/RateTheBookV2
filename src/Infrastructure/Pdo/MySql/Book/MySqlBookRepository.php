@@ -22,8 +22,8 @@ class MySqlBookRepository implements BookRepositoryInterface
     {
         $sql = <<<SQL
 SELECT
-        b.id = `id`,
-        b.title = `title`
+        b.id,
+        b.title
 FROM
         books b
 SQL;
