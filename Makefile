@@ -4,6 +4,8 @@
 .DEFAULT_GOAL := help
 
 # CONSTANTS
+DOCKER_COMPOSE = docker-compose
+DOCKER_COMPOSE_FILE = docker-compose.yml
 
 ifneq (,$(findstring xterm,${TERM}))
 	BLACK   := $(shell tput -Txterm setaf 0)
