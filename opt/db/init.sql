@@ -9,9 +9,21 @@ CREATE TABLE `books` (
   `title` varchar(100) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+DROP TABLE IF EXISTS `authors`;
+CREATE TABLE `authors` (
+                         `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                         `name` varchar(100) NOT NULL,
+                         `lastName` varchar(100) NOT NULL,
+                         `nationality` ENUM('España','EEUU') NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 INSERT INTO `books` (`id`, `title`) VALUES
-(1, 'El Ángel Perdido'),
-(2, 'El Aliento de los Dioses');
+                                        (1, 'El Ángel Perdido'),
+                                        (2, 'El Aliento de los Dioses');
+
+INSERT INTO `authors` (`id`, `name`, `lastName`, `nationality`) VALUES
+                                        (1, 'Javier', 'Sierra', 'España'),
+                                        (2, 'Brandon', 'Sanderson', 'EEUU');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
