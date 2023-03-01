@@ -21,7 +21,7 @@ class BooksAction extends Action
     protected function action(): ResponseInterface
     {
         return $this->respondWithData([
-            'message' => $this->getAllBooksUseCase->execute()
+            'content' => $this->getAllBooksUseCase->execute()
         ]);
     }
 }

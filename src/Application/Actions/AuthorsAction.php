@@ -21,7 +21,7 @@ class AuthorsAction extends Action
     public function action(): ResponseInterface
     {
         return $this->respondWithData([
-            'message' => $this->getAllAuthorsUseCase->execute()
+            'content' => $this->getAllAuthorsUseCase->execute()
         ]);
     }
 }
