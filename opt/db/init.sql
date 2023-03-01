@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS `authors`;
 CREATE TABLE `authors` (
                            `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
                            `name` varchar(100) NOT NULL,
-                           `lastName` varchar(100) NOT NULL,
+                           `last_name` varchar(100) NOT NULL,
                            `nationality` varchar(50) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -29,7 +29,7 @@ CREATE TABLE `books` (
   FOREIGN KEY (`genre_id`) REFERENCES `genres` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `authors` (`id`, `name`, `lastName`, `nationality`) VALUES
+INSERT INTO `authors` (`id`, `name`, `last_name`, `nationality`) VALUES
                                         (1, 'Javier', 'Sierra', 'España'),
                                         (2, 'Brandon', 'Sanderson', 'EEUU');
 
