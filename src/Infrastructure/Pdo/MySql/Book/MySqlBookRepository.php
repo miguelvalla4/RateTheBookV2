@@ -19,9 +19,19 @@ class MySqlBookRepository implements BookRepositoryInterface
         $sql = <<<SQL
 SELECT
         b.id,
-        b.title
+        b.title,
+        a.name as `author_name`,
+        g.name as `genre_name`,
+        b.editorial,
+        b.published_year,
+        a.id as `author_id`,
+        g.id as `genre_id`,
+        a.last_name,
+        a.nationality
 FROM
-        books b
+        books b 
+            INNER JOIN authors a ON b.author_id = a.id
+            INNER JOIN genres g ON b.genre_id = g.id
 SQL;
 
         $statement = $this->pdo->prepare($sql);
