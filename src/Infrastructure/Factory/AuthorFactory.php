@@ -11,9 +11,9 @@ class AuthorFactory
     public static function buildFromArray(array $primitiveAuthor): Author
     {
         return new Author(
-            (int) $primitiveAuthor['id'],
-            (string) $primitiveAuthor['name'],
-            (string) $primitiveAuthor['lastName'],
+            (int) $primitiveAuthor['author_id'],
+            (string) $primitiveAuthor['author_name'],
+            (string) $primitiveAuthor['last_name'],
             (string) $primitiveAuthor['nationality']
         );
     }
