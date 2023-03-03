@@ -27,7 +27,8 @@ class BookFactory
             $author,
             $genre,
             (string) $primitiveBook['editorial'],
-            (int) $primitiveBook['published_year']
+            (int) $primitiveBook['published_year'],
+            $primitiveBook['saga']
         );
     }
 }
