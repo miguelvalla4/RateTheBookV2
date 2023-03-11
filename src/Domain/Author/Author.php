@@ -8,12 +8,12 @@ use JsonSerializable;
 
 class Author implements JsonSerializable
 {
-    protected int $id;
+    protected ?int $id;
     protected string $name;
     protected string $lastName;
     protected string $nationality;
 
-    public function __construct(int $id, string $name, string $lastName, string $nationality)
+    public function __construct(?int $id, string $name, string $lastName, string $nationality)
     {
         $this->id = $id;
         $this->name = $name;
@@ -21,7 +21,7 @@ class Author implements JsonSerializable
         $this->nationality = $nationality;
     }
 
-    public function id(): int
+    public function id(): ?int
     {
         return $this->id;
     }
@@ -42,6 +42,16 @@ class Author implements JsonSerializable
     }
 
     public function jsonSerialize(): array
+    {
+        return [
+            "id" => $this->id(),
+            "name" => $this->name(),
+            "lastName" => $this->lastName(),
+            "nationality" => $this->nationality()
+        ];
+    }
+
+    public function toArray(): array
     {
         return [
             "id" => $this->id(),

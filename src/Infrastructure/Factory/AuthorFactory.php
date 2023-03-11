@@ -17,4 +17,14 @@ class AuthorFactory
             (string) $primitiveAuthor['nationality']
         );
     }
+
+    public static function buildFromArrayToPersist(array $primitiveAuthor): Author
+    {
+        return new Author(
+            null,
+            (string) $primitiveAuthor['author_name'],
+            (string) $primitiveAuthor['last_name'],
+            (string) $primitiveAuthor['nationality']
+        );
+    }
 }
