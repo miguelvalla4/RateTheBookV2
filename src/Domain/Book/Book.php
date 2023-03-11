@@ -7,6 +7,7 @@ namespace App\Domain\Book;
 use App\Domain\Author\Author;
 use App\Domain\Genre\Genre;
 use JsonSerializable;
+use phpDocumentor\Reflection\Utils;
 
 class Book implements JsonSerializable
 {
@@ -16,6 +17,7 @@ class Book implements JsonSerializable
     protected Genre $genre;
     protected string $editorial;
     protected int $publishedYear;
+    protected ?string $saga;
 
     public function __construct(
         int $id,
@@ -23,7 +25,8 @@ class Book implements JsonSerializable
         Author $author,
         Genre $genre,
         string $editorial,
-        int $publishedYear
+        int $publishedYear,
+        ?string $saga
     ) {
         $this->id = $id;
         $this->title = $title;
@@ -31,6 +34,7 @@ class Book implements JsonSerializable
         $this->genre = $genre;
         $this->editorial = $editorial;
         $this->publishedYear = $publishedYear;
+        $this->saga = $saga;
     }
 
     public function id(): int
@@ -43,9 +47,6 @@ class Book implements JsonSerializable
         return $this->title;
     }
 
-    /**
-     * @return Author
-     */
     public function author(): Author
     {
         return $this->author;
@@ -61,14 +62,15 @@ class Book implements JsonSerializable
         return $this->editorial;
     }
 
-    /**
-     * @return int
-     */
     public function publishedYear(): int
     {
         return $this->publishedYear;
     }
 
+    public function saga(): ?string
+    {
+        return $this->saga;
+    }
     public function jsonSerialize(): array
     {
         return [
@@ -77,7 +79,8 @@ class Book implements JsonSerializable
             "author" => $this->author->name() . " " . $this->author->lastName(),
             "genre" => $this->genre->name(),
             "editorial" => $this->editorial(),
-            "published_year" => $this->publishedYear()
+            "published_year" => $this->publishedYear(),
+            "saga" => $this->saga() ?? 'Novela única'
         ];
     }
 }

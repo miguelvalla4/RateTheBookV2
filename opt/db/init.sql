@@ -24,6 +24,7 @@ CREATE TABLE `books` (
   `genre_id` int NOT NULL,
   `editorial` VARCHAR(20),
   `published_year` year NOT NULL,
+  `saga` VARCHAR(30),
   PRIMARY KEY (`id`),
   FOREIGN KEY (`author_id`) REFERENCES `authors` (`id`),
   FOREIGN KEY (`genre_id`) REFERENCES `genres` (`id`)
@@ -31,7 +32,9 @@ CREATE TABLE `books` (
 
 INSERT INTO `authors` (`id`, `name`, `last_name`, `nationality`) VALUES
                                         (1, 'Javier', 'Sierra', 'España'),
-                                        (2, 'Brandon', 'Sanderson', 'EEUU');
+                                        (2, 'Brandon', 'Sanderson', 'EEUU'),
+                                        (3, 'Jean Marie', 'Auel', 'EEUU'),
+                                        (4, 'Isabel', 'Allende', 'España');
 
 INSERT INTO `genres` (`id`, `name`) VALUES
                                         (1,'Fiction'),
@@ -56,9 +59,18 @@ INSERT INTO `genres` (`id`, `name`) VALUES
                                         (20, 'Philosophy'),
                                         (21, 'History-Fiction');
 
-INSERT INTO `books` (`id`, `title`, `author_id`, `genre_id`, `editorial`, `published_year`) VALUES
-                                                                                                (1, 'El Ángel Perdido', 1, 21, 'Editorial Planeta', 2011),
-                                                                                                (2, 'El Aliento de los Dioses', 2, 5, 'Nova', 2009);
+INSERT INTO `books` (`id`, `title`, `author_id`, `genre_id`, `editorial`, `published_year`, `saga`) VALUES
+                                                    (1, 'El Ángel Perdido', 1, 21, 'Editorial Planeta', 2011, null),
+                                                    (2, 'El Aliento de los Dioses', 2, 5, 'Nova', 2009, null),
+                                                    (3, 'El Camino de los Reyes', 2, 5, 'Nova', 2010, 'El archivo de las tormentas'),
+                                                    (4, 'Palabras Radiantes', 2, 5, 'Nova', 2014, 'El archivo de las tormentas'),
+                                                    (5, 'Juramentada', 2, 5, 'Nova', 2017, 'El archivo de las tormentas'),
+                                                    (6, 'El Ritmo de la Guerra', 2, 5, 'Nova', 2020, 'El archivo de las tormentas'),
+                                                    (7, 'Esquirla del Amanecer', 2, 5, 'Nova', 2020, 'El archivo de las tormentas'),
+                                                    (8, 'Trenza del Mar Esmeralda', 2, 5, 'Nova', 2023, null),
+                                                    (9, 'Elantris', 2, 5, 'Nova', 2005, null),
+                                                    (10, 'El Clan del Oso Cavernario', 3, 21, 'MAEVA', 1980, 'Los Hijos de la Tierra'),
+                                                    (11, 'La Ciudad de las Bestias', 4, 1, 'Plaza Janés', 2002, null);
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;

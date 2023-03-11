@@ -7,4 +7,6 @@ namespace App\Domain\Book;
 interface BookRepositoryInterface
 {
     public function getAllBooks(): array;
+
+    public function getBooksBySaga(string $saga): array;
 }
