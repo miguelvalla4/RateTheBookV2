@@ -7,4 +7,6 @@ namespace App\Domain\Author;
 interface AuthorRepositoryInterface
 {
     public function getAllAuthors(): array;
+
+    public function saveAuthor(Author $author): void;
 }
