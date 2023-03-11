@@ -1,0 +1,17 @@
+POST /author HTTP/1.1
+Host: localhost:8080
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="author_name"
+
+Author_Name
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="last_name"
+
+Author_LastName
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="nationality"
+
+Author_Nationality
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
