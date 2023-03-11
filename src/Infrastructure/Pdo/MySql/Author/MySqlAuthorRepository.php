@@ -18,9 +18,9 @@ class MySqlAuthorRepository implements AuthorRepositoryInterface
     {
         $sql = <<<SQL
 SELECT
-        a.id,
-        a.name,
-        a.lastName,
+        a.id as `author_id`,
+        a.name as `author_name`,
+        a.last_name,
         a.nationality
 FROM
         authors a
