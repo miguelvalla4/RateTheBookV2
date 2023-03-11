@@ -8,5 +8,5 @@ interface BookRepositoryInterface
 {
     public function getAllBooks(): array;
 
-    public function getBooksBySaga(): array;
+    public function getBooksBySaga(string $saga): array;
 }

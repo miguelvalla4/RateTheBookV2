@@ -12,8 +12,8 @@ class GetBooksBySagaUseCase
     {
     }
 
-    public function execute(): array
+    public function execute(string $saga): array
     {
-        return $this->bookRepository->getBooksBySaga();
+        return $this->bookRepository->getBooksBySaga($saga);
     }
 }
