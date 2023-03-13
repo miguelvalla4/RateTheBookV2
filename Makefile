@@ -64,3 +64,13 @@ composer-install:
 # Update dependencies of Composer
 composer-update:
 	$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) run --rm php composer update
+
+test-all: ## todos los test
+	$(DOCKER_PHP) vendor/bin/phpunit --no-coverage --testsuite Unit,Integration
+test-unit: ## test unitarios
+	$(DOCKER_PHP) vendor/bin/phpunit --no-coverage --testsuite UnitTests
+test-integration: ## test de integración
+	$(DOCKER_PHP) vendor/bin/phpunit --no-coverage --testsuite Integration
+test-cover: ## test de covertura
+	$(DOCKER_PHP_USER) vendor/bin/phpunit --testsuite Unit,Integration
+	echo "body{font-size:1em;}" >> reports/coverage/html/_css/custom.css
